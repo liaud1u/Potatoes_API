@@ -7,12 +7,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PotatoDAO implements IPotatoDAO {
-    private final HashMap<Integer, Potato> potatoHashMap = new HashMap<>();
+
+    // Map of Potato (ID, Potato)
+    private final Map<Integer, Potato> potatoHashMap = new HashMap<>();
 
     public PotatoDAO() {
+
+        // Read the .csv file and convert it to an Hashmap of potato
         BufferedReader br = null;
         try {
             br = new BufferedReader(new InputStreamReader(
@@ -20,22 +25,28 @@ public class PotatoDAO implements IPotatoDAO {
 
             String line = null;
 
+            // Get the list of field of the csv file
             ArrayList<String> fields = new ArrayList<>();
 
             int cptId = 0;
 
+            // For each line of csv
             while ((line = br.readLine()) != null) {
                 String[] str = line.split(";");
                 HashMap<String, String> potatoData = new HashMap<>();
+                // For each row of csv
                 for (int i = 0; i < str.length; i++) {
                     if (cptId == 0) {
+                        // If it's the first line, we add the string as a new field
                         fields.add(str[i]);
                     } else {
+                        // We add the data to the map of potato data
                         if (i < fields.size())
                             potatoData.put(fields.get(i), str[i]);
                     }
                 }
 
+                // Conversion of the map of potato data to a map of potato
                 if (cptId != 0) {
                     Potato potato = new Potato(potatoData.get("Variety Name"),
                             potatoData.get("Description"),
@@ -49,9 +60,8 @@ public class PotatoDAO implements IPotatoDAO {
                             potatoData.get("Height of plants"),
                             potatoData.get("Colour of flower"));
 
-                    potatoHashMap.put(cptId - 1, potato);
+                    potatoHashMap.put(cptId, potato);
                 }
-
                 cptId++;
             }
 
@@ -62,7 +72,7 @@ public class PotatoDAO implements IPotatoDAO {
         }
 
     }
-
+    
     @Override
     public List<Potato> findAll() {
         return new ArrayList<>(potatoHashMap.values());
@@ -81,7 +91,7 @@ public class PotatoDAO implements IPotatoDAO {
         Writer writer = null;
         try {
             writer = new FileWriter("./src/main/resources/static/potatoes.csv", true);
-            writer.write(potato.getVarietyName() + ";" + potato.getDescription() + ";" + potato.getParentage() + ";" + potato.getIVTVariety() + ";-;-;-;-;-;-;" + potato.getBreederCountry() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;" + potato.getColourOfSkin() + ";" + potato.getColourOfFlesh() + ";-;" + potato.getSmoothness() + ";-;" + potato.getMaturity() + ";" + potato.getHeight() + ";" + potato.getCoulourOfFlower() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;\n");
+            writer.write(potato.getVarietyName() + ";" + potato.getDescription() + ";" + potato.getParentage() + ";" + potato.getIVTVariety() + ";-;-;-;-;-;-;" + potato.getBreederCountry() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;" + potato.getColourOfSkin() + ";" + potato.getColourOfFlesh() + ";-;" + potato.getSmoothness() + ";-;" + potato.getMaturity() + ";" + potato.getHeight() + ";" + potato.getColourOfFlower() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;\n");
             writer.close();
 
         } catch (IOException e) {

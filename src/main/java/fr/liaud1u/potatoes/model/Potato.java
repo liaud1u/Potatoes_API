@@ -1,18 +1,54 @@
 package fr.liaud1u.potatoes.model;
 
 public class Potato {
+    // Potato Variety Name
     private String varietyName;
-    private String description;
-    private String parentage;
-    private String IVTVariety;
-    private String breederCountry;
-    private String colourOfSkin;
-    private String colourOfFlesh;
-    private String smoothness;
-    private String maturity;
-    private String height;
-    private String coulourOfFlower;
 
+    // Potato Variety description
+    private String description;
+
+    // Potato parentage
+    private String parentage;
+
+    // Potato IVT Variety
+    private String IVTVariety;
+
+    // Potato Breeder country
+    private String breederCountry;
+
+    // Potato colour of skin
+    private String colourOfSkin;
+
+    // Potato colour of flesh
+    private String colourOfFlesh;
+
+    // Potato smoothness
+    private String smoothness;
+
+    // Potato maturity
+    private String maturity;
+
+    // Potato crop height
+    private String height;
+
+    // Potato crop flower colour
+    private String colourOfFlower;
+
+    /**
+     * Default constructor
+     *
+     * @param varietyName
+     * @param description
+     * @param parentage
+     * @param IVTVariety
+     * @param breederCountry
+     * @param colourOfSkin
+     * @param colourOfFlesh
+     * @param smoothness
+     * @param maturity
+     * @param height
+     * @param coulourOfFlower
+     */
     public Potato(String varietyName, String description, String parentage, String IVTVariety, String breederCountry, String colourOfSkin, String colourOfFlesh, String smoothness, String maturity, String height, String coulourOfFlower) {
         this.varietyName = varietyName;
         this.description = description;
@@ -24,7 +60,7 @@ public class Potato {
         this.smoothness = smoothness;
         this.maturity = maturity;
         this.height = height;
-        this.coulourOfFlower = coulourOfFlower;
+        this.colourOfFlower = coulourOfFlower;
     }
 
     public String getVarietyName() {
@@ -107,11 +143,11 @@ public class Potato {
         this.height = height;
     }
 
-    public String getCoulourOfFlower() {
-        return coulourOfFlower;
+    public String getColourOfFlower() {
+        return colourOfFlower;
     }
 
-    public void setCoulourOfFlower(String coulourOfFlower) {
-        this.coulourOfFlower = coulourOfFlower;
+    public void setColourOfFlower(String colourOfFlower) {
+        this.colourOfFlower = colourOfFlower;
     }
 }
