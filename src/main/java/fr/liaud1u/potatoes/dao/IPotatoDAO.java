@@ -27,4 +27,19 @@ public interface IPotatoDAO {
      * @param potato Potato to add
      */
     void save(Potato potato);
+
+    /**
+     * Update a potato in DAO
+     *
+     * @param id     int id of the potato
+     * @param potato Potato new value
+     */
+    void updatePotato(int id, Potato potato);
+
+    /**
+     * Remove a Potato from DAO
+     *
+     * @param id int id of the potato to remove
+     */
+    void removePotato(int id);
 }

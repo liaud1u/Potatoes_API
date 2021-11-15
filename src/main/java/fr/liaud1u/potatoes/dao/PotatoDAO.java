@@ -86,12 +86,28 @@ public class PotatoDAO implements IPotatoDAO {
     @Override
     public void save(Potato potato) {
         potatoHashMap.put(potatoHashMap.size(), potato);
+        save();
+    }
 
+    @Override
+    public void updatePotato(int id, Potato potato) {
+        potatoHashMap.put(id, potato);
+        save();
+    }
 
+    @Override
+    public void removePotato(int id) {
+        potatoHashMap.remove(id);
+        save();
+    }
+
+    public void save() {
         Writer writer = null;
         try {
-            writer = new FileWriter("./src/main/resources/static/potatoes.csv", true);
-            writer.write(potato.getVarietyName() + ";" + potato.getDescription() + ";" + potato.getParentage() + ";" + potato.getIVTVariety() + ";-;-;-;-;-;-;" + potato.getBreederCountry() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;" + potato.getColourOfSkin() + ";" + potato.getColourOfFlesh() + ";-;" + potato.getSmoothness() + ";-;" + potato.getMaturity() + ";" + potato.getHeight() + ";" + potato.getColourOfFlower() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;\n");
+            writer = new FileWriter("./src/main/resources/static/potatoes.csv", false);
+
+            for (Potato potato : potatoHashMap.values())
+                writer.write(potato.getVarietyName() + ";" + potato.getDescription() + ";" + potato.getParentage() + ";" + potato.getIVTVariety() + ";-;-;-;-;-;-;" + potato.getBreederCountry() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;" + potato.getColourOfSkin() + ";" + potato.getColourOfFlesh() + ";-;" + potato.getSmoothness() + ";-;" + potato.getMaturity() + ";" + potato.getHeight() + ";" + potato.getColourOfFlower() + ";-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;-;\n");
             writer.close();
 
         } catch (IOException e) {

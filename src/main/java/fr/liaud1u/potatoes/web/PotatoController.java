@@ -44,4 +44,25 @@ public class PotatoController {
     public void addPotato(@RequestBody Potato potato) {
         potatoDAO.save(potato);
     }
+
+    /**
+     * Delete potato
+     *
+     * @param id int id of potato to delete
+     */
+    @DeleteMapping("/Potato/{id}")
+    void deleteEmployee(@PathVariable int id) {
+        potatoDAO.removePotato(id);
+    }
+
+    /**
+     * Update potato
+     *
+     * @param potato Potato data
+     * @param id     int id of the potato to update
+     */
+    @PutMapping(value = "Potato/{id}")
+    public void addPotato(@RequestBody Potato potato, @PathVariable int id) {
+        potatoDAO.updatePotato(id, potato);
+    }
 }
