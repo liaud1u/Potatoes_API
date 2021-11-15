@@ -15,6 +15,9 @@ public class PotatoDAO implements IPotatoDAO {
     // Map of Potato (ID, Potato)
     private final Map<Integer, Potato> potatoHashMap = new HashMap<>();
 
+    // Current maximum ID
+    private int maxId = 0;
+
     public PotatoDAO() {
 
         // Read the .csv file and convert it to an Hashmap of potato
@@ -65,6 +68,8 @@ public class PotatoDAO implements IPotatoDAO {
                 cptId++;
             }
 
+            maxId = potatoHashMap.size();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -85,7 +90,7 @@ public class PotatoDAO implements IPotatoDAO {
 
     @Override
     public void save(Potato potato) {
-        potatoHashMap.put(potatoHashMap.size(), potato);
+        potatoHashMap.put(maxId++, potato);
         save();
     }
 
