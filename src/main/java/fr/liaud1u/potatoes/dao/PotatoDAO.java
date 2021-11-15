@@ -68,7 +68,7 @@ public class PotatoDAO implements IPotatoDAO {
                 cptId++;
             }
 
-            maxId = potatoHashMap.size();
+            maxId = potatoHashMap.size() + 1;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -106,6 +106,9 @@ public class PotatoDAO implements IPotatoDAO {
         save();
     }
 
+    /**
+     * Save DAO
+     */
     public void save() {
         Writer writer = null;
         try {
